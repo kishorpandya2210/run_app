@@ -19,11 +19,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: StravaLogin(),
-      // initialRoute: '/',
+      // home: StravaLogin(),
+      initialRoute: '/',
       routes: {
-        // '/': (context) => HomePage(),
-        '/homepage': (context) => HomePage(),
+        '/': (context) => StravaLogin(),
+        // '/homepage': (context) => HomePage(),
         '/leaderboard': (context) => LeaderBoardPage(),
         '/connect-wallet': (context) => ConnectWallet()
       },

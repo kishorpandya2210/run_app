@@ -46,7 +46,8 @@ class _StravaLoginState extends State<StravaLogin> {
                         'auto');
                     // print(isAuthOk.toString());
                     if (isAuthOk) {
-                      Navigator.pushReplacementNamed(context, '/homepage');
+                      Navigator.pushReplacementNamed(context, '/leaderboard',
+                          arguments: strava);
                     }
                   },
                   child: Container(
