@@ -1,5 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
+// ignore: use_key_in_widget_constructors
 class StravaLogin extends StatefulWidget {
   @override
   _StravaLoginState createState() => _StravaLoginState();
@@ -10,22 +13,24 @@ class _StravaLoginState extends State<StravaLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: ListView(
               children: <Widget>[
                 Image.asset('lib/Images/big running icon.png'),
                 Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Run App',
-                      style: TextStyle(
-                          color: Colors.cyan,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 45),
-                    )),
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(10),
+                  child: const Text(
+                    'Run App',
+                    style: TextStyle(
+                      color: Colors.cyan,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 45,
+                    ),
+                  ),
+                ),
                 FlatButton(
-                  onPressed: (){
+                  onPressed: () {
                     //Strava login screen
                     //Navigator.pushNamed(context, '/homepage');
                   },
@@ -33,24 +38,21 @@ class _StravaLoginState extends State<StravaLogin> {
                     width: 300,
                     height: 80,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Colors.teal,
-                          Colors.greenAccent
-                        ],
+                      gradient: const LinearGradient(
+                        colors: [Colors.teal, Colors.greenAccent],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.black12,
-                            offset: Offset(5, 5),
+                          offset: Offset(5, 5),
                           blurRadius: 10,
                         )
                       ],
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Connect to Strava',
                         style: TextStyle(
@@ -62,8 +64,7 @@ class _StravaLoginState extends State<StravaLogin> {
                     ),
                   ),
                 ),
-            
               ],
-      )));
+            )));
   }
 }

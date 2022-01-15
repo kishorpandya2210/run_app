@@ -17,10 +17,6 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             RaisedButton(
-              child: Text('Connect to Strava'),
-              onPressed: () {},
-            ),
-            RaisedButton(
                 child: Text('Check Leaderboard'),
                 onPressed: () {
                   Navigator.pushNamed(context, '/leaderboard');
