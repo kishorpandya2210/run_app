@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:run_app/secret.dart';
@@ -20,11 +23,20 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
     Person(name: 'Het', totalMiles: 3000),
   ];
 
-  void fetchData() {
-    Future<http.Response> fetchAlbum() {
-      return http.get(
-          Uri.parse('https://delta-runft.herokuapp.com/api/strava/activities'));
-    }
+  var response;
+
+  Future<void> fetchData() async {
+    // String accessToken = strava.getStoredToken().toString();
+    // response = await http.post(
+    //   Uri.parse('https://jsonplaceholder.typicode.com/albums/1'),
+    //   // Send authorization headers to the backend.
+    //   headers: {
+    //     HttpHeaders.authorizationHeader: accessToken,
+    //   },
+    // );
+    // final responseJson = jsonDecode(response.body);
+    // print(response.body);
+    // print(responseJson);
   }
 
   @override
@@ -72,22 +84,27 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
         ),
         systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
-      body: Container(
-        width: double.infinity,
-        child: Column(
-          children: persons.map((e) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(e.name),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text(e.totalMiles.toString()),
-              ],
-            );
-          }).toList(),
-        ),
+      body: Column(
+        children: [
+          RaisedButton(child: Text('Get data'), onPressed: fetchData),
+          Container(
+            width: double.infinity,
+            child: Column(
+              children: persons.map((e) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(e.name),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(e.totalMiles.toString()),
+                  ],
+                );
+              }).toList(),
+            ),
+          ),
+        ],
       ),
     );
   }
