@@ -48,6 +48,9 @@ class _StravaLoginState extends State<StravaLogin> {
                     if (isAuthOk) {
                       Navigator.pushReplacementNamed(context, '/leaderboard',
                           arguments: strava);
+                    } else {
+                      strava.deAuthorize();
+                      // Navigator.pushReplacementNamed(context, '/');
                     }
                   },
                   child: Container(

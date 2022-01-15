@@ -1,12 +1,9 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:run_app/reload_button.dart';
 import 'package:run_app/secret.dart';
 import 'package:strava_flutter/strava.dart';
 import './models/person.dart';
-import 'package:http/http.dart' as http;
 
 class LeaderBoardPage extends StatefulWidget {
   @override
@@ -22,22 +19,6 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
     Person(name: 'Mit', totalMiles: 3000),
     Person(name: 'Het', totalMiles: 3000),
   ];
-
-  var response;
-
-  Future<void> fetchData() async {
-    // String accessToken = strava.getStoredToken().toString();
-    // response = await http.post(
-    //   Uri.parse('https://jsonplaceholder.typicode.com/albums/1'),
-    //   // Send authorization headers to the backend.
-    //   headers: {
-    //     HttpHeaders.authorizationHeader: accessToken,
-    //   },
-    // );
-    // final responseJson = jsonDecode(response.body);
-    // print(response.body);
-    // print(responseJson);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +67,6 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
       ),
       body: Column(
         children: [
-          RaisedButton(child: Text('Get data'), onPressed: fetchData),
           Container(
             width: double.infinity,
             child: Column(
@@ -103,6 +83,9 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
                 );
               }).toList(),
             ),
+          ),
+          Expanded(
+            child: ReloadButton(),
           ),
         ],
       ),
