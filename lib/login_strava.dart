@@ -27,6 +27,7 @@ class _StravaLoginState extends State<StravaLogin> {
                 FlatButton(
                   onPressed: (){
                     //Strava login screen
+                    //Navigator.pushNamed(context, '/homepage');
                   },
                   child: Container(
                     width: 300,
