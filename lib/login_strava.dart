@@ -44,7 +44,7 @@ class _StravaLoginState extends State<StravaLogin> {
                         'activity:write,activity:read_all,profile:read_all,profile:write',
                         secret,
                         'auto');
-                    print(isAuthOk);
+                    print(isAuthOk.toString());
                   },
                   child: Container(
                     width: 300,
