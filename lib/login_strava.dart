@@ -1,6 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:strava_flutter/strava.dart';
+import './secret.dart';
 
 // ignore: use_key_in_widget_constructors
 class StravaLogin extends StatefulWidget {
@@ -9,6 +11,9 @@ class StravaLogin extends StatefulWidget {
 }
 
 class _StravaLoginState extends State<StravaLogin> {
+  final strava = Strava(true, secret);
+  bool isAuthOk = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,9 +35,16 @@ class _StravaLoginState extends State<StravaLogin> {
                   ),
                 ),
                 FlatButton(
-                  onPressed: () {
+                  onPressed: () async {
                     //Strava login screen
-                    Navigator.pushNamed(context, '/homepage');
+                    // Navigator.pushNamed(context, '/homepage');
+                    print("reached");
+                    isAuthOk = await strava.oauth(
+                        clientID,
+                        'activity:write,activity:read_all,profile:read_all,profile:write',
+                        secret,
+                        'auto');
+                    print(isAuthOk);
                   },
                   child: Container(
                     width: 300,
