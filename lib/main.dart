@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:run_app/leaderboard_page.dart';
 import './home_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  // const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -17,6 +18,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: HomePage(),
+      // initialRoute: '/',
+      routes: {
+        // '/': (context) => HomePage(),
+        '/leaderboard': (context) => LeaderBoardPage()
+      },
     );
   }
 }
