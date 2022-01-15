@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.all(10),
         child: Column(
           children: [
-            FlatButton(
+            RaisedButton(
               child: Text('Connect to Strava'),
               onPressed: () {},
             ),
@@ -24,6 +24,11 @@ class _HomePageState extends State<HomePage> {
                 child: Text('Check Leaderboard'),
                 onPressed: () {
                   Navigator.pushNamed(context, '/leaderboard');
+                }),
+            RaisedButton(
+                child: Text('Connect wallet'),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/connect-wallet');
                 })
           ],
         ),

@@ -21,9 +21,19 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
         title: Text('LeaderBoard'),
       ),
       body: Container(
+        width: double.infinity,
         child: Column(
           children: persons.map((e) {
-            return Text(e.name);
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(e.name),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(e.totalMiles.toString()),
+              ],
+            );
           }).toList(),
         ),
       ),

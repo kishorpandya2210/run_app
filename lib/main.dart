@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:run_app/connect_wallet.dart';
 import 'package:run_app/leaderboard_page.dart';
+import 'package:run_app/login_strava.dart';
 import './home_page.dart';
 
 void main() {
@@ -17,11 +19,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: StravaLogin(),
       // initialRoute: '/',
       routes: {
         // '/': (context) => HomePage(),
-        '/leaderboard': (context) => LeaderBoardPage()
+        '/homepage': (context) => HomePage(),
+        '/leaderboard': (context) => LeaderBoardPage(),
+        '/connect-wallet': (context) => ConnectWallet()
       },
     );
   }
