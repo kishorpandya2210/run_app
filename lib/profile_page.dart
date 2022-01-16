@@ -17,7 +17,6 @@ class _ProfileInfoState extends State<ProfileInfo> {
   var activities;
 
   Future<void> fetchData() async {
-    // String accessToken = strava.getStoredToken().toString();
     var localToken = await strava.getStoredToken();
     String at = localToken.accessToken;
     print(at);
@@ -29,19 +28,61 @@ class _ProfileInfoState extends State<ProfileInfo> {
       body: jsonEncode(<String, String>{"accessToken": at}),
     );
     final responseJson = jsonDecode(response.body) as Map;
-    // print(responseJson);
     setState(() {
       r = responseJson;
-      // activities = responseJson['activities'] as Map;
     });
     print(r);
-    // final responseJson = jsonDecode(response.body);
+  }
+
+  List<Map<String, Object>> ans = [];
+
+  Future<void> fetchDataActivity() async {
+    var localToken2 = await strava.getStoredToken();
+    String at2 = localToken2.accessToken;
+    print(at2);
+    final response = await http.post(
+      Uri.parse(
+          "https://delta-runft.herokuapp.com/api/strava/useractivitylist"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        "accessToken": '2805aff3439729ef29ddff600e843c9ddc12f824'
+      }),
+    );
+    final responseJson2 = jsonDecode(response.body);
+    setState(() {
+      activities = responseJson2;
+    });
+    print(activities.toString());
+    while (activities == null) {}
+    getList();
+  }
+
+  void getList() {
+    for (int i = 0; i < activities.length; i++) {
+      Map<String, Object> temp;
+      // print(activities[i]['name'].toString());
+      String id = activities[i]['id'].toString();
+      String name = activities[i]['name'].toString();
+      String distance = activities[i]['distance'].toString();
+      String type = activities[i]['type'].toString();
+      // temp.putIfAbsent('name', () => activities[i]['name'].toString());
+      // temp.putIfAbsent('distance', () => activities[i]['distance'].toString());
+      // temp.putIfAbsent('type', () => activities[i]['type'].toString());
+      temp = {'id': id, 'name': name, 'distance': distance, 'type': type};
+      // print(temp.toString());
+      ans.add(temp);
+    }
+
+    // print(ans.toString());
   }
 
   @override
   void initState() {
     super.initState();
     fetchData();
+    fetchDataActivity();
   }
 
   @override
@@ -95,6 +136,33 @@ class _ProfileInfoState extends State<ProfileInfo> {
                 ListTile(
                   title: Text('Country: ' + r['country'].toString()),
                 ),
+                ListTile(
+                  title: Text('Activities: '),
+                ),
+                Column(
+                  children: ans.map((index) {
+                    return Column(
+                      children: [
+                        ListTile(
+                          title: Text('ID: ' + index['id'].toString()),
+                        ),
+                        ListTile(
+                          title: Text('Name: ' + index['name'].toString()),
+                        ),
+                        ListTile(
+                          title:
+                              Text('Distance: ' + index['distance'].toString()),
+                        ),
+                        ListTile(
+                          title: Text('Type: ' + index['type'].toString()),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        )
+                      ],
+                    );
+                  }).toList(),
+                )
               ],
             ),
       // body: Column(

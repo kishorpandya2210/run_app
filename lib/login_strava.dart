@@ -26,7 +26,7 @@ class _StravaLoginState extends State<StravaLogin> {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
                   child: const Text(
-                    'Run App',
+                    'ruNFT',
                     style: TextStyle(
                       color: Colors.cyan,
                       fontWeight: FontWeight.w500,

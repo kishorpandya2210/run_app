@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:run_app/secret.dart';
 import 'package:strava_flutter/strava.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ConnectWallet extends StatefulWidget {
   @override
@@ -10,6 +11,16 @@ class ConnectWallet extends StatefulWidget {
 
 class _ConnectWalletState extends State<ConnectWallet> {
   final strava = Strava(true, secret);
+
+  _launchURL() async {
+    const url = 'https://testnets.opensea.io/collection/runft-v4';
+    launch(url);
+    // if (await canLaunch(url)) {
+    //   await launch(url);
+    // } else {
+    //   throw 'Could not launch $url';
+    // }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,9 +90,7 @@ class _ConnectWalletState extends State<ConnectWallet> {
               padding: const EdgeInsets.all(20),
             ),
             FlatButton(
-              onPressed: () {
-                //Go to wallet with all your NFTS
-              },
+              onPressed: _launchURL,
               child: Container(
                 width: 300,
                 height: 80,
@@ -102,7 +111,7 @@ class _ConnectWalletState extends State<ConnectWallet> {
                 ),
                 child: const Center(
                   child: Text(
-                    'View Wallet',
+                    'View Collection',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 25,
