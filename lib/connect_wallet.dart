@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:run_app/secret.dart';
 import 'package:strava_flutter/strava.dart';
+import 'package:flutter/services.dart';
 
 class ConnectWallet extends StatefulWidget {
+  const ConnectWallet({Key key}) : super(key: key);
+
   @override
   _ConnectWalletState createState() => _ConnectWalletState();
 }
 
 class _ConnectWalletState extends State<ConnectWallet> {
   final strava = Strava(true, secret);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('View Collections'),
         automaticallyImplyLeading: false,
-        title: const Text("NFT Dashboard"),
         leading: IconButton(
-          icon: Icon(Icons.logout),
+          icon: const Icon(Icons.logout),
           color: Colors.white,
           iconSize: 25,
           onPressed: () async {
@@ -27,16 +30,19 @@ class _ConnectWalletState extends State<ConnectWallet> {
         ),
         actions: <Widget>[
           IconButton(
-            icon: Image.asset('lib/Images/leaderboard.png'),
-            iconSize: 10,
+            icon: const Icon(Icons.leaderboard),
+            color: Colors.white,
+            iconSize: 25,
             tooltip: 'Check Leaderboards',
             onPressed: () {
               Navigator.pushReplacementNamed(context, '/leaderboard');
             },
           ),
           IconButton(
-            icon: Image.asset('lib/Images/view-icon.png'),
-            iconSize: 10,
+            // icon: Image.asset('lib/Images/view-icon.png'),
+            icon: const Icon(Icons.account_balance_wallet),
+            color: Colors.white,
+            iconSize: 25,
             onPressed: () {},
           ),
         ],
@@ -74,7 +80,7 @@ class _ConnectWalletState extends State<ConnectWallet> {
                 height: 80,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Colors.teal, Colors.greenAccent],
+                    colors: [Colors.teal, Colors.cyan],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -105,14 +111,14 @@ class _ConnectWalletState extends State<ConnectWallet> {
             ),
             FlatButton(
               onPressed: () {
-                //Add new NFT to wallet
+                Navigator.pushReplacementNamed(context, '/minting');
               },
               child: Container(
                 width: 300,
                 height: 80,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Colors.teal, Colors.greenAccent],
+                    colors: [Colors.teal, Colors.cyan],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),

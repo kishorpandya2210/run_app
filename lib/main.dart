@@ -3,6 +3,7 @@ import 'package:run_app/connect_wallet.dart';
 import 'package:run_app/leaderboard_page.dart';
 import 'package:run_app/login_strava.dart';
 import './home_page.dart';
+import 'mint_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => StravaLogin(),
         // '/homepage': (context) => HomePage(),
         '/leaderboard': (context) => LeaderBoardPage(),
-        '/connect-wallet': (context) => ConnectWallet()
+        '/connect-wallet': (context) => ConnectWallet(),
+        '/minting': (context) => MintPage(),
       },
     );
   }
