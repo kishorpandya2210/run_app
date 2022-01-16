@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:strava_flutter/Models/token.dart';
 import 'package:strava_flutter/strava.dart';
 import './secret.dart';
+import 'package:http/http.dart' as http;
 
 class MintPage extends StatefulWidget {
   const MintPage({Key key}) : super(key: key);
@@ -14,8 +17,35 @@ class MintPage extends StatefulWidget {
 }
 
 class _MintPageState extends State<MintPage> {
+  TextEditingController walletInput = TextEditingController();
+  TextEditingController idInput = TextEditingController();
+  TextEditingController apilog = TextEditingController();
+
   Future<Token> token;
   final strava = Strava(true, secret);
+
+  var response;
+  var responseString = "";
+
+  Future<void> fetchData() async {
+    var localToken = await strava.getStoredToken();
+    String at = localToken.accessToken;
+
+    final response = await http.post(
+      Uri.parse("https://delta-runft.herokuapp.com/api/token/mint/" +
+          walletInput.text +
+          "/" +
+          idInput.text),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{"accessToken": at}),
+    );
+
+    final responseJson = jsonDecode(response.body);
+    print(responseJson);
+    responseString = responseJson.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,21 +83,34 @@ class _MintPageState extends State<MintPage> {
         child: Column(
           children: [
             TextFormField(
+              controller: walletInput,
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
                 labelText: 'Enter your wallet address',
               ),
+              onChanged: (value) {
+                setState(() {
+                  walletInput.text = value.toString();
+                });
+              },
             ),
             TextFormField(
+              controller: idInput,
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
                 labelText: 'Enter activity to mint (id)',
               ),
+              onChanged: (value) {
+                setState(() {
+                  idInput.text = value.toString();
+                });
+              },
             ),
             FlatButton(
               padding: const EdgeInsets.all(30),
               onPressed: () {
-                //Add new NFT to wallet
+                fetchData();
+                print("was cliekd");
               },
               child: Container(
                 width: 150,
@@ -99,6 +142,12 @@ class _MintPageState extends State<MintPage> {
                 ),
               ),
             ),
+            Text(
+              "show output here",
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            )
           ],
         ),
       ),
