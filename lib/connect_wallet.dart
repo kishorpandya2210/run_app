@@ -4,8 +4,6 @@ import 'package:strava_flutter/strava.dart';
 import 'package:flutter/services.dart';
 
 class ConnectWallet extends StatefulWidget {
-  const ConnectWallet({Key key}) : super(key: key);
-
   @override
   _ConnectWalletState createState() => _ConnectWalletState();
 }

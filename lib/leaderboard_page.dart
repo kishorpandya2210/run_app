@@ -92,6 +92,15 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
               Navigator.pushReplacementNamed(context, '/connect-wallet');
             },
           ),
+          IconButton(
+            icon: Icon(Icons.info),
+            color: Colors.white,
+            iconSize: 25,
+            tooltip: 'Profile info',
+            onPressed: () {
+              Navigator.pushNamed(context, '/profile');
+            },
+          ),
         ],
         backgroundColor: Colors.transparent,
         elevation: 0.0,

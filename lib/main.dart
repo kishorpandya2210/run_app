@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:run_app/connect_wallet.dart';
 import 'package:run_app/leaderboard_page.dart';
 import 'package:run_app/login_strava.dart';
+import 'package:run_app/profile_page.dart';
 import './home_page.dart';
 import 'mint_page.dart';
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/leaderboard': (context) => LeaderBoardPage(),
         '/connect-wallet': (context) => ConnectWallet(),
         '/minting': (context) => MintPage(),
+        '/profile': (context) => ProfileInfo(),
       },
     );
   }
