@@ -31,6 +31,10 @@ class _MintPageState extends State<MintPage> {
     var localToken = await strava.getStoredToken();
     String at = localToken.accessToken;
 
+    if (walletInput.text == "" || idInput.text == "") {
+      return;
+    }
+
     final response = await http.post(
       Uri.parse("https://delta-runft.herokuapp.com/api/token/mint/" +
           walletInput.text +
@@ -82,29 +86,27 @@ class _MintPageState extends State<MintPage> {
         padding: const EdgeInsets.all(30),
         child: Column(
           children: [
-            TextFormField(
+            TextField(
               controller: walletInput,
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
+              decoration: InputDecoration(
                 labelText: 'Enter your wallet address',
               ),
-              onChanged: (value) {
-                setState(() {
-                  walletInput.text = value.toString();
-                });
-              },
+              // onChanged: (value) {
+              //   setState(() {
+              //     walletInput.text = value.toString();
+              //   });
+              // },
             ),
-            TextFormField(
+            TextField(
               controller: idInput,
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
+              decoration: InputDecoration(
                 labelText: 'Enter activity to mint (id)',
               ),
-              onChanged: (value) {
-                setState(() {
-                  idInput.text = value.toString();
-                });
-              },
+              // onChanged: (value) {
+              //   setState(() {
+              //     idInput.text = value.toString();
+              //   });
+              // },
             ),
             FlatButton(
               padding: const EdgeInsets.all(30),

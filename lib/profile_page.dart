@@ -75,9 +75,9 @@ class _ProfileInfoState extends State<ProfileInfo> {
                     Text('Lastname: ' + r['lastname'].toString()),
                     Text('Weight: ' + r['weight'].toString()),
                     Text('City: ' + r['city'].toString()),
-                    Text('State: ' + r['city'].toString()),
-                    Text('Country: ' + r['city'].toString()),
-                    Text('Gender: ' + r['city'].toString()),
+                    Text('State: ' + r['state'].toString()),
+                    Text('Country: ' + r['country'].toString()),
+                    Text('Gender: ' + r['gender'].toString()),
                     Row(
                       children: [
                         Text('Activities: '),
