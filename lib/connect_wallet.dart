@@ -4,8 +4,6 @@ import 'package:strava_flutter/strava.dart';
 import 'package:flutter/services.dart';
 
 class ConnectWallet extends StatefulWidget {
-  const ConnectWallet({Key key}) : super(key: key);
-
   @override
   _ConnectWalletState createState() => _ConnectWalletState();
 }
@@ -44,6 +42,15 @@ class _ConnectWalletState extends State<ConnectWallet> {
             color: Colors.white,
             iconSize: 25,
             onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.info),
+            color: Colors.white,
+            iconSize: 25,
+            tooltip: 'Profile info',
+            onPressed: () {
+              Navigator.pushNamed(context, '/profile');
+            },
           ),
         ],
         backgroundColor: Colors.transparent,
