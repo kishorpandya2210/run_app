@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:run_app/secret.dart';
+import 'package:strava_flutter/strava.dart';
 
 class ConnectWallet extends StatefulWidget {
   @override
@@ -7,6 +9,7 @@ class ConnectWallet extends StatefulWidget {
 }
 
 class _ConnectWalletState extends State<ConnectWallet> {
+  final strava = Strava(true, secret);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,10 +17,12 @@ class _ConnectWalletState extends State<ConnectWallet> {
         automaticallyImplyLeading: false,
         title: const Text("NFT Dashboard"),
         leading: IconButton(
-          icon: Image.asset('lib/Images/logout.png'),
-          iconSize: 10,
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, '/login');
+          icon: Icon(Icons.logout),
+          color: Colors.white,
+          iconSize: 25,
+          onPressed: () async {
+            strava.deAuthorize();
+            Navigator.pushReplacementNamed(context, '/');
           },
         ),
         actions: <Widget>[
