@@ -29,7 +29,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
       body: jsonEncode(<String, String>{"accessToken": at}),
     );
     final responseJson = jsonDecode(response.body) as Map;
-    print(responseJson);
+    // print(responseJson);
     setState(() {
       r = responseJson;
       // activities = responseJson['activities'] as Map;
@@ -39,10 +39,17 @@ class _ProfileInfoState extends State<ProfileInfo> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // ignore: dead_code
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: const Text('Profile'),
         // automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -62,36 +69,57 @@ class _ProfileInfoState extends State<ProfileInfo> {
         ),
         systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          RaisedButton(child: Text('Fetch Data'), onPressed: fetchData),
-          r == null
-              ? Text('Press the button above to retrieve data')
-              : Column(
-                  children: [
-                    Text('Firstname: ' + r['firstname'].toString()),
-                    Text('Lastname: ' + r['lastname'].toString()),
-                    Text('Weight: ' + r['weight'].toString()),
-                    Text('City: ' + r['city'].toString()),
-                    Text('State: ' + r['state'].toString()),
-                    Text('Country: ' + r['country'].toString()),
-                    Text('Gender: ' + r['gender'].toString()),
-                    Row(
-                      children: [
-                        Text('Activities: '),
-                        Column(
-                          children: r['activities'].length == 0
-                              ? [Text('No activities')]
-                              : [Text('Activities')],
-                        )
-                      ],
-                    ),
-                  ],
-                )
-        ],
-      ),
+      body: r == null
+          ? Container(
+              alignment: Alignment.center, child: const Text('Loading...'))
+          : ListView(
+              children: <Widget>[
+                ListTile(
+                  title: Text('Firstname: ' + r['firstname'].toString()),
+                ),
+                ListTile(
+                  title: Text('Lastname: ' + r['lastname'].toString()),
+                ),
+                ListTile(
+                  title: Text('Gender: ' + r['gender'].toString()),
+                ),
+                ListTile(
+                  title: Text('Weight: ' + r['weight'].toString()),
+                ),
+                ListTile(
+                  title: Text('City: ' + r['city'].toString()),
+                ),
+                ListTile(
+                  title: Text('State: ' + r['state'].toString()),
+                ),
+                ListTile(
+                  title: Text('Country: ' + r['country'].toString()),
+                ),
+              ],
+            ),
+      // body: Column(
+      //   mainAxisAlignment: MainAxisAlignment.center,
+      //   children: [
+      //     Text('Firstname: ' + r['firstname'].toString()),
+      //     Text('Lastname: ' + r['lastname'].toString()),
+      //     Text('Weight: ' + r['weight'].toString()),
+      //     Text('City: ' + r['city'].toString()),
+      //     Text('State: ' + r['state'].toString()),
+      //     Text('Country: ' + r['country'].toString()),
+      //     Text('Gender: ' + r['gender'].toString()),
+      //     Row(
+      //       children: [
+      //         const Text('Activities: '),
+      //         Column(
+      //           mainAxisAlignment: MainAxisAlignment.center,
+      //           children: r['activities'].length == 0
+      //               ? [const Text('No activities')]
+      //               : [const Text('Activities')],
+      //         )
+      //       ],
+      //     ),
+      //   ],
+      // ),
     );
   }
 }
