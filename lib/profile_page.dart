@@ -46,9 +46,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{
-        "accessToken": '2805aff3439729ef29ddff600e843c9ddc12f824'
-      }),
+      body: jsonEncode(<String, String>{"accessToken": at2}),
     );
     final responseJson2 = jsonDecode(response.body);
     setState(() {
@@ -60,6 +58,9 @@ class _ProfileInfoState extends State<ProfileInfo> {
   }
 
   void getList() {
+    if (activities.length == 0) {
+      return;
+    }
     for (int i = 0; i < activities.length; i++) {
       Map<String, Object> temp;
       // print(activities[i]['name'].toString());
@@ -136,9 +137,13 @@ class _ProfileInfoState extends State<ProfileInfo> {
                 ListTile(
                   title: Text('Country: ' + r['country'].toString()),
                 ),
-                ListTile(
-                  title: Text('Activities: '),
-                ),
+                ans.length == 0
+                    ? ListTile(
+                        title: Text('No activities'),
+                      )
+                    : ListTile(
+                        title: Text('Activities: '),
+                      ),
                 Column(
                   children: ans.map((index) {
                     return Column(
